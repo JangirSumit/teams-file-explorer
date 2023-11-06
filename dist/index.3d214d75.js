@@ -27372,7 +27372,6 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _tile = require("./Tile");
 var _tileDefault = parcelHelpers.interopDefault(_tile);
-var _react = require("react");
 const Explorer = ({ data, parent = null })=>{
     if (!data || !data.length) return "";
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27386,7 +27385,7 @@ const Explorer = ({ data, parent = null })=>{
                         id: d.id
                     }, void 0, false, {
                         fileName: "src/components/Explorer.js",
-                        lineNumber: 18,
+                        lineNumber: 17,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Explorer, {
@@ -27394,7 +27393,7 @@ const Explorer = ({ data, parent = null })=>{
                         parent: d.id
                     }, d.metadata.id, false, {
                         fileName: "src/components/Explorer.js",
-                        lineNumber: 19,
+                        lineNumber: 18,
                         columnNumber: 13
                     }, undefined)
                 ]
@@ -27402,7 +27401,7 @@ const Explorer = ({ data, parent = null })=>{
         })
     }, parent?.id, false, {
         fileName: "src/components/Explorer.js",
-        lineNumber: 10,
+        lineNumber: 9,
         columnNumber: 5
     }, undefined);
 };
@@ -27416,7 +27415,7 @@ $RefreshReg$(_c, "Explorer");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","./Tile":"fIATk"}],"fIATk":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Tile":"fIATk"}],"fIATk":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$f357 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

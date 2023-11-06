@@ -1,5 +1,4 @@
 import Tile from "./Tile";
-import { useEffect, useState } from "react";
 
 const Explorer = ({ data, parent = null }) => {
   if (!data || !data.length) {
