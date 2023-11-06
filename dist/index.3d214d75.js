@@ -27326,27 +27326,33 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
 var _dataJson = require("../data/data.json");
 var _dataJsonDefault = parcelHelpers.interopDefault(_dataJson);
 var _explorer = require("./components/Explorer");
 var _explorerDefault = parcelHelpers.interopDefault(_explorer);
+var _s = $RefreshSig$();
 const App = ()=>{
+    _s();
+    const [data, setData] = (0, _react.useState)((0, _dataJsonDefault.default));
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "container",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _explorerDefault.default), {
-            data: (0, _dataJsonDefault.default),
-            parent: null
+            data: data,
+            parent: null,
+            updateData: setData
         }, void 0, false, {
             fileName: "src/App.js",
-            lineNumber: 7,
+            lineNumber: 10,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/App.js",
-        lineNumber: 6,
+        lineNumber: 9,
         columnNumber: 5
     }, undefined);
 };
+_s(App, "hDGcfQHkZj5ZsEBk8saO8jx9VfY=");
 _c = App;
 exports.default = App;
 var _c;
@@ -27357,7 +27363,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","../data/data.json":"lQewh","./components/Explorer":"ay2Xt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lQewh":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","../data/data.json":"lQewh","./components/Explorer":"ay2Xt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"lQewh":[function(require,module,exports) {
 module.exports = JSON.parse('[{"id":"32482d63-0631-471a-8740-5bc13592321e","metadata":{"type":"directory","name":"root"},"childrens":[{"id":"9945923e-3cf2-49c8-8a2c-f92b64415595","metadata":{"type":"directory","name":"directory-2"},"childrens":[{"id":"95111bb4-7e2a-422f-96c7-5405b0576d36","metadata":{"name":"file-32","type":"file"}}]},{"id":"d1d77659-ec42-4ab6-9b88-cf2c1080c184","metadata":{"type":"file","name":"file-3"}}]},{"id":"ee120434-7503-4a72-8739-7f6daabcc55e","metadata":{"type":"file","name":"file-at-root"}}]');
 
 },{}],"ay2Xt":[function(require,module,exports) {
@@ -27372,13 +27378,14 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _tile = require("./Tile");
 var _tileDefault = parcelHelpers.interopDefault(_tile);
-const Explorer = ({ data, parent = null })=>{
+const Explorer = ({ data, updateData, parent = null })=>{
     if (!data || !data.length) return "";
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         "data-parent-id": parent?.id,
         className: parent ? "explorer padding-left-15" : "explorer",
         children: data.map((d)=>{
-            return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "elements",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tileDefault.default), {
                         metadata: d.metadata,
@@ -27389,15 +27396,20 @@ const Explorer = ({ data, parent = null })=>{
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Explorer, {
+                        updateData: updateData,
                         data: d.childrens,
                         parent: d.id
-                    }, d.metadata.id, false, {
+                    }, void 0, false, {
                         fileName: "src/components/Explorer.js",
                         lineNumber: 18,
                         columnNumber: 13
                     }, undefined)
                 ]
-            }, void 0, true);
+            }, d.id, true, {
+                fileName: "src/components/Explorer.js",
+                lineNumber: 16,
+                columnNumber: 11
+            }, undefined);
         })
     }, parent?.id, false, {
         fileName: "src/components/Explorer.js",
@@ -27482,27 +27494,43 @@ const Tile = ({ id, metadata })=>{
         }, void 0, true);
         return "";
     }
-    function showFileTextbox(params) {
+    function showFileTextbox(parent) {
         if (!showAddFileTextBox) return "";
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
             type: "text",
-            className: "input-add"
+            className: "input-add",
+            placeholder: "Press Enter to create File",
+            "data-parent": parent.id,
+            onKeyUp: onFileTextboxKeyUp
         }, void 0, false, {
             fileName: "src/components/Tile.js",
-            lineNumber: 60,
-            columnNumber: 12
+            lineNumber: 61,
+            columnNumber: 7
         }, this);
     }
-    function showDirectoryTextbox(params) {
+    function showDirectoryTextbox(parent) {
         if (!showAddDirectoryTextBox) return "";
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
             type: "text",
-            className: "input-add"
+            className: "input-add",
+            placeholder: "Press Enter to create Directory",
+            "data-parent": parent.id,
+            onKeyUp: onDirectoryTextboxKeyUp
         }, void 0, false, {
             fileName: "src/components/Tile.js",
-            lineNumber: 67,
-            columnNumber: 12
+            lineNumber: 76,
+            columnNumber: 7
         }, this);
+    }
+    function onFileTextboxKeyUp(event) {
+        if (event.which != 13 || !event.target.value) return;
+        const fileName = event.target.value;
+        const parentId = event.target.dataset.parent;
+    }
+    function onDirectoryTextboxKeyUp(event) {
+        if (event.which != 13 || !event.target.value) return;
+        const directoryName = event.target.value;
+        const parentId = event.target.dataset.parent;
     }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
@@ -27516,37 +27544,41 @@ const Tile = ({ id, metadata })=>{
                             src: getIcon(metadata.type)
                         }, void 0, false, {
                             fileName: "src/components/Tile.js",
-                            lineNumber: 79,
+                            lineNumber: 112,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/Tile.js",
-                        lineNumber: 78,
+                        lineNumber: 111,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: metadata.name
                     }, void 0, false, {
                         fileName: "src/components/Tile.js",
-                        lineNumber: 81,
+                        lineNumber: 114,
                         columnNumber: 9
                     }, undefined),
                     getButtons(metadata.type)
                 ]
             }, id, true, {
                 fileName: "src/components/Tile.js",
-                lineNumber: 72,
+                lineNumber: 105,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "show-textboxes",
                 children: [
-                    showFileTextbox(),
-                    showDirectoryTextbox()
+                    showFileTextbox({
+                        id
+                    }),
+                    showDirectoryTextbox({
+                        id
+                    })
                 ]
             }, void 0, true, {
                 fileName: "src/components/Tile.js",
-                lineNumber: 85,
+                lineNumber: 118,
                 columnNumber: 7
             }, undefined)
         ]

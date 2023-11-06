@@ -1,6 +1,6 @@
 import Tile from "./Tile";
 
-const Explorer = ({ data, parent = null }) => {
+const Explorer = ({ data, updateData, parent = null }) => {
   if (!data || !data.length) {
     return "";
   }
@@ -13,10 +13,14 @@ const Explorer = ({ data, parent = null }) => {
     >
       {data.map((d) => {
         return (
-          <>
+          <div key={d.id} className="elements">
             <Tile metadata={d.metadata} id={d.id} />
-            <Explorer data={d.childrens} parent={d.id} key={d.metadata.id} />
-          </>
+            <Explorer
+              updateData={updateData}
+              data={d.childrens}
+              parent={d.id}
+            />
+          </div>
         );
       })}
     </div>

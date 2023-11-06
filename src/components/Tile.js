@@ -53,18 +53,51 @@ const Tile = ({ id, metadata }) => {
     return "";
   }
 
-  function showFileTextbox(params) {
+  function showFileTextbox(parent) {
     if (!showAddFileTextBox) {
       return "";
     }
-    return <input type="text" className="input-add" />;
+    return (
+      <input
+        type="text"
+        className="input-add"
+        placeholder="Press Enter to create File"
+        data-parent={parent.id}
+        onKeyUp={onFileTextboxKeyUp}
+      />
+    );
   }
 
-  function showDirectoryTextbox(params) {
+  function showDirectoryTextbox(parent) {
     if (!showAddDirectoryTextBox) {
       return "";
     }
-    return <input type="text" className="input-add" />;
+    return (
+      <input
+        type="text"
+        className="input-add"
+        placeholder="Press Enter to create Directory"
+        data-parent={parent.id}
+        onKeyUp={onDirectoryTextboxKeyUp}
+      />
+    );
+  }
+
+  function onFileTextboxKeyUp(event) {
+    if (event.which != 13 || !event.target.value) {
+      return;
+    }
+
+    const fileName = event.target.value;
+    const parentId = event.target.dataset.parent;
+  }
+
+  function onDirectoryTextboxKeyUp(event) {
+    if (event.which != 13 || !event.target.value) {
+      return;
+    }
+    const directoryName = event.target.value;
+    const parentId = event.target.dataset.parent;
   }
 
   return (
@@ -83,8 +116,8 @@ const Tile = ({ id, metadata }) => {
       </div>
 
       <div className="show-textboxes">
-        {showFileTextbox()}
-        {showDirectoryTextbox()}
+        {showFileTextbox({ id })}
+        {showDirectoryTextbox({ id })}
       </div>
     </>
   );
