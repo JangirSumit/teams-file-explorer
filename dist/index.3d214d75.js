@@ -27331,7 +27331,6 @@ var _dataJsonDefault = parcelHelpers.interopDefault(_dataJson);
 var _explorer = require("./components/Explorer");
 var _explorerDefault = parcelHelpers.interopDefault(_explorer);
 const App = ()=>{
-    console.log((0, _dataJsonDefault.default));
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "container",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _explorerDefault.default), {
@@ -27339,12 +27338,12 @@ const App = ()=>{
             parent: null
         }, void 0, false, {
             fileName: "src/App.js",
-            lineNumber: 9,
+            lineNumber: 7,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/App.js",
-        lineNumber: 8,
+        lineNumber: 6,
         columnNumber: 5
     }, undefined);
 };
@@ -27371,11 +27370,27 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _filePng = require("../icons/file.png");
-var _filePngDefault = parcelHelpers.interopDefault(_filePng);
-var _directoryPng = require("../icons/directory.png");
-var _directoryPngDefault = parcelHelpers.interopDefault(_directoryPng);
+var _tile = require("./Tile");
+var _tileDefault = parcelHelpers.interopDefault(_tile);
+var _react = require("react");
+var _s = $RefreshSig$();
 const Explorer = ({ data, parent = null })=>{
+    _s();
+    const [showAddFileTextBox, setShowAddFileTextBox] = (0, _react.useState)(false);
+    const [showAddDirectoryTextBox, setShowAddDirectoryTextBox] = (0, _react.useState)(false);
+    //   useEffect(() => {
+    //     document.addEventListener("click", onDocumentClick);
+    //     return () => document.removeEventListener("click", onDocumentClick);
+    //   });
+    //   function onDocumentClick(event) {
+    //     if (
+    //       event.target.classList?.contains("input-add") == false &&
+    //       event.target.classList?.contains("button-add") == false
+    //     ) {
+    //       setShowAddFileTextBox(false);
+    //       setShowAddDirectoryTextBox(false);
+    //     }
+    //   }
     if (!data || !data.length) return "";
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         "data-parent-id": parent?.id,
@@ -27383,54 +27398,32 @@ const Explorer = ({ data, parent = null })=>{
         children: data.map((d)=>{
             return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                 children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        "data-id": d.id,
-                        "data-type": d.metadata.type,
-                        className: "tile",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                                    src: d.metadata.type === "file" ? (0, _filePngDefault.default) : (0, _directoryPngDefault.default)
-                                }, void 0, false, {
-                                    fileName: "src/components/Explorer.js",
-                                    lineNumber: 19,
-                                    columnNumber: 17
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/Explorer.js",
-                                lineNumber: 18,
-                                columnNumber: 15
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                children: d.metadata.name
-                            }, void 0, false, {
-                                fileName: "src/components/Explorer.js",
-                                lineNumber: 23,
-                                columnNumber: 15
-                            }, undefined)
-                        ]
-                    }, d.id, true, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tileDefault.default), {
+                        metadata: d.metadata,
+                        id: d.id
+                    }, void 0, false, {
                         fileName: "src/components/Explorer.js",
-                        lineNumber: 17,
+                        lineNumber: 36,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Explorer, {
                         data: d.childrens,
                         parent: d.id
-                    }, void 0, false, {
+                    }, d.metadata.id, false, {
                         fileName: "src/components/Explorer.js",
-                        lineNumber: 25,
+                        lineNumber: 37,
                         columnNumber: 13
                     }, undefined)
                 ]
             }, void 0, true);
         })
-    }, void 0, false, {
+    }, parent?.id, false, {
         fileName: "src/components/Explorer.js",
-        lineNumber: 10,
+        lineNumber: 28,
         columnNumber: 5
     }, undefined);
 };
+_s(Explorer, "Ub7UN8gd9tjeIq2oZkhOD/uDN5Q=");
 _c = Explorer;
 exports.default = Explorer;
 var _c;
@@ -27441,7 +27434,145 @@ $RefreshReg$(_c, "Explorer");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../icons/file.png":"dIFqu","../icons/directory.png":"3BW8O"}],"dIFqu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq","./Tile":"fIATk"}],"fIATk":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$f357 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$f357.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _filePng = require("../icons/file.png");
+var _filePngDefault = parcelHelpers.interopDefault(_filePng);
+var _directoryPng = require("../icons/directory.png");
+var _directoryPngDefault = parcelHelpers.interopDefault(_directoryPng);
+var _s = $RefreshSig$();
+const Tile = ({ id, metadata })=>{
+    _s();
+    const [showAddFileTextBox, setShowAddFileTextBox] = (0, _react.useState)(false);
+    const [showAddDirectoryTextBox, setShowAddDirectoryTextBox] = (0, _react.useState)(false);
+    function getTileClassName(type) {
+        return type === "file" ? "tile file" : "tile directory";
+    }
+    function getIcon(type) {
+        return type === "file" ? (0, _filePngDefault.default) : (0, _directoryPngDefault.default);
+    }
+    function onAddDirectoryClick() {
+        setShowAddDirectoryTextBox(true);
+    }
+    function onAddFileClick() {
+        setShowAddFileTextBox(true);
+    }
+    function getButtons(type) {
+        if (type === "directory") return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    onClick: onAddFileClick,
+                    className: "button-add",
+                    children: "add file"
+                }, void 0, false, {
+                    fileName: "src/components/Tile.js",
+                    lineNumber: 29,
+                    columnNumber: 11
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    onClick: onAddDirectoryClick,
+                    className: "button-add",
+                    children: "add directory"
+                }, void 0, false, {
+                    fileName: "src/components/Tile.js",
+                    lineNumber: 32,
+                    columnNumber: 11
+                }, this)
+            ]
+        }, void 0, true);
+        return "";
+    }
+    function showFileTextbox(params) {
+        if (!showAddFileTextBox) return "";
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+            type: "text",
+            className: "input-add"
+        }, void 0, false, {
+            fileName: "src/components/Tile.js",
+            lineNumber: 45,
+            columnNumber: 12
+        }, this);
+    }
+    function showDirectoryTextbox(params) {
+        if (!showAddDirectoryTextBox) return "";
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+            type: "text",
+            className: "input-add"
+        }, void 0, false, {
+            fileName: "src/components/Tile.js",
+            lineNumber: 52,
+            columnNumber: 12
+        }, this);
+    }
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                "data-id": id,
+                "data-type": metadata.type,
+                className: getTileClassName(metadata.type),
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                            src: getIcon(metadata.type)
+                        }, void 0, false, {
+                            fileName: "src/components/Tile.js",
+                            lineNumber: 64,
+                            columnNumber: 11
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/Tile.js",
+                        lineNumber: 63,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: metadata.name
+                    }, void 0, false, {
+                        fileName: "src/components/Tile.js",
+                        lineNumber: 66,
+                        columnNumber: 9
+                    }, undefined),
+                    getButtons(metadata.type)
+                ]
+            }, id, true, {
+                fileName: "src/components/Tile.js",
+                lineNumber: 57,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "show-textboxes",
+                children: [
+                    showFileTextbox(),
+                    showDirectoryTextbox()
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Tile.js",
+                lineNumber: 70,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true);
+};
+_s(Tile, "Ub7UN8gd9tjeIq2oZkhOD/uDN5Q=");
+_c = Tile;
+exports.default = Tile;
+var _c;
+$RefreshReg$(_c, "Tile");
+
+  $parcel$ReactRefreshHelpers$f357.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../icons/file.png":"dIFqu","../icons/directory.png":"3BW8O"}],"dIFqu":[function(require,module,exports) {
 module.exports = require("b7b32ee4cbae6a7").getBundleURL("UckoE") + "file.19fd956e.png" + "?" + Date.now();
 
 },{"b7b32ee4cbae6a7":"lgJ39"}],"lgJ39":[function(require,module,exports) {

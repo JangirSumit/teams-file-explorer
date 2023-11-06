@@ -3,9 +3,41 @@
 }
 
 .tile {
-  height: 40px;
+  justify-content: flex-start;
+  height: 25px;
   font-size: 25px;
   display: flex;
+}
+
+.tile img {
+  height: 25px;
+}
+
+.tile input {
+  height: 20px;
+}
+
+.tile * {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.file {
+  width: 200px;
+}
+
+.directory {
+  width: 400px;
+}
+
+.tile button {
+  height: 20px;
+}
+
+.show-textboxes {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 30px;
 }
 
 /*# sourceMappingURL=index.9e4c6fd2.css.map */
