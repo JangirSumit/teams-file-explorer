@@ -27373,24 +27373,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _tile = require("./Tile");
 var _tileDefault = parcelHelpers.interopDefault(_tile);
 var _react = require("react");
-var _s = $RefreshSig$();
 const Explorer = ({ data, parent = null })=>{
-    _s();
-    const [showAddFileTextBox, setShowAddFileTextBox] = (0, _react.useState)(false);
-    const [showAddDirectoryTextBox, setShowAddDirectoryTextBox] = (0, _react.useState)(false);
-    //   useEffect(() => {
-    //     document.addEventListener("click", onDocumentClick);
-    //     return () => document.removeEventListener("click", onDocumentClick);
-    //   });
-    //   function onDocumentClick(event) {
-    //     if (
-    //       event.target.classList?.contains("input-add") == false &&
-    //       event.target.classList?.contains("button-add") == false
-    //     ) {
-    //       setShowAddFileTextBox(false);
-    //       setShowAddDirectoryTextBox(false);
-    //     }
-    //   }
     if (!data || !data.length) return "";
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         "data-parent-id": parent?.id,
@@ -27403,7 +27386,7 @@ const Explorer = ({ data, parent = null })=>{
                         id: d.id
                     }, void 0, false, {
                         fileName: "src/components/Explorer.js",
-                        lineNumber: 36,
+                        lineNumber: 18,
                         columnNumber: 13
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Explorer, {
@@ -27411,7 +27394,7 @@ const Explorer = ({ data, parent = null })=>{
                         parent: d.id
                     }, d.metadata.id, false, {
                         fileName: "src/components/Explorer.js",
-                        lineNumber: 37,
+                        lineNumber: 19,
                         columnNumber: 13
                     }, undefined)
                 ]
@@ -27419,11 +27402,10 @@ const Explorer = ({ data, parent = null })=>{
         })
     }, parent?.id, false, {
         fileName: "src/components/Explorer.js",
-        lineNumber: 28,
+        lineNumber: 10,
         columnNumber: 5
     }, undefined);
 };
-_s(Explorer, "Ub7UN8gd9tjeIq2oZkhOD/uDN5Q=");
 _c = Explorer;
 exports.default = Explorer;
 var _c;
@@ -27452,6 +27434,16 @@ var _directoryPngDefault = parcelHelpers.interopDefault(_directoryPng);
 var _s = $RefreshSig$();
 const Tile = ({ id, metadata })=>{
     _s();
+    (0, _react.useEffect)(()=>{
+        document.addEventListener("click", onDocumentClick);
+        return ()=>document.removeEventListener("click", onDocumentClick);
+    });
+    function onDocumentClick(event) {
+        if (event.target.classList?.contains("input-add") == false && event.target.classList?.contains("button-add") == false) {
+            setShowAddFileTextBox(false);
+            setShowAddDirectoryTextBox(false);
+        }
+    }
     const [showAddFileTextBox, setShowAddFileTextBox] = (0, _react.useState)(false);
     const [showAddDirectoryTextBox, setShowAddDirectoryTextBox] = (0, _react.useState)(false);
     function getTileClassName(type) {
@@ -27475,7 +27467,7 @@ const Tile = ({ id, metadata })=>{
                     children: "add file"
                 }, void 0, false, {
                     fileName: "src/components/Tile.js",
-                    lineNumber: 29,
+                    lineNumber: 44,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27484,7 +27476,7 @@ const Tile = ({ id, metadata })=>{
                     children: "add directory"
                 }, void 0, false, {
                     fileName: "src/components/Tile.js",
-                    lineNumber: 32,
+                    lineNumber: 47,
                     columnNumber: 11
                 }, this)
             ]
@@ -27498,7 +27490,7 @@ const Tile = ({ id, metadata })=>{
             className: "input-add"
         }, void 0, false, {
             fileName: "src/components/Tile.js",
-            lineNumber: 45,
+            lineNumber: 60,
             columnNumber: 12
         }, this);
     }
@@ -27509,7 +27501,7 @@ const Tile = ({ id, metadata })=>{
             className: "input-add"
         }, void 0, false, {
             fileName: "src/components/Tile.js",
-            lineNumber: 52,
+            lineNumber: 67,
             columnNumber: 12
         }, this);
     }
@@ -27525,26 +27517,26 @@ const Tile = ({ id, metadata })=>{
                             src: getIcon(metadata.type)
                         }, void 0, false, {
                             fileName: "src/components/Tile.js",
-                            lineNumber: 64,
+                            lineNumber: 79,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/Tile.js",
-                        lineNumber: 63,
+                        lineNumber: 78,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: metadata.name
                     }, void 0, false, {
                         fileName: "src/components/Tile.js",
-                        lineNumber: 66,
+                        lineNumber: 81,
                         columnNumber: 9
                     }, undefined),
                     getButtons(metadata.type)
                 ]
             }, id, true, {
                 fileName: "src/components/Tile.js",
-                lineNumber: 57,
+                lineNumber: 72,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27555,13 +27547,13 @@ const Tile = ({ id, metadata })=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/Tile.js",
-                lineNumber: 70,
+                lineNumber: 85,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true);
 };
-_s(Tile, "Ub7UN8gd9tjeIq2oZkhOD/uDN5Q=");
+_s(Tile, "0QXOWq1xu7wIMs29uhL9IttWsw4=");
 _c = Tile;
 exports.default = Tile;
 var _c;

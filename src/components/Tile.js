@@ -1,8 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import fileIcon from "../icons/file.png";
 import directoryIcon from "../icons/directory.png";
 
 const Tile = ({ id, metadata }) => {
+  useEffect(() => {
+    document.addEventListener("click", onDocumentClick);
+    return () => document.removeEventListener("click", onDocumentClick);
+  });
+
+  function onDocumentClick(event) {
+    if (
+      event.target.classList?.contains("input-add") == false &&
+      event.target.classList?.contains("button-add") == false
+    ) {
+      setShowAddFileTextBox(false);
+      setShowAddDirectoryTextBox(false);
+    }
+  }
+
   const [showAddFileTextBox, setShowAddFileTextBox] = useState(false);
   const [showAddDirectoryTextBox, setShowAddDirectoryTextBox] = useState(false);
 

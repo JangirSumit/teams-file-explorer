@@ -2,24 +2,6 @@ import Tile from "./Tile";
 import { useEffect, useState } from "react";
 
 const Explorer = ({ data, parent = null }) => {
-  const [showAddFileTextBox, setShowAddFileTextBox] = useState(false);
-  const [showAddDirectoryTextBox, setShowAddDirectoryTextBox] = useState(false);
-
-  //   useEffect(() => {
-  //     document.addEventListener("click", onDocumentClick);
-  //     return () => document.removeEventListener("click", onDocumentClick);
-  //   });
-
-  //   function onDocumentClick(event) {
-  //     if (
-  //       event.target.classList?.contains("input-add") == false &&
-  //       event.target.classList?.contains("button-add") == false
-  //     ) {
-  //       setShowAddFileTextBox(false);
-  //       setShowAddDirectoryTextBox(false);
-  //     }
-  //   }
-
   if (!data || !data.length) {
     return "";
   }
