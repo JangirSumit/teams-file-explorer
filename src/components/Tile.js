@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import fileIcon from "../icons/file.png";
 import directoryIcon from "../icons/directory.png";
+import Utility from "../../common/Utility";
 
-const Tile = ({ id, metadata }) => {
+const Tile = ({ id, metadata, updateData }) => {
   useEffect(() => {
     document.addEventListener("click", onDocumentClick);
     return () => document.removeEventListener("click", onDocumentClick);
@@ -90,6 +91,37 @@ const Tile = ({ id, metadata }) => {
 
     const fileName = event.target.value;
     const parentId = event.target.dataset.parent;
+
+    addTileElement(fileName, "file", parentId);
+  }
+
+  function addTileElement(name, type, parentId) {
+    updateData((prevData) => {
+      const newFile = {
+        id: Utility.Guid(),
+        metadata: { name: name, type: type },
+        childrens: [],
+      };
+      const tileElement = getTileElement(prevData, parentId);
+      tileElement.childrens = tileElement.childrens
+        ? [...tileElement.childrens, newFile]
+        : [newFile];
+      setShowAddFileTextBox(false);
+      setShowAddDirectoryTextBox(false);
+      return JSON.parse(JSON.stringify(prevData));
+    });
+  }
+
+  function getTileElement(data, parentId) {
+    for (let i = 0; i < data.length; i++) {
+      const element = data[i];
+      console.log(data, element.id, parentId);
+      if (element.id === parentId) {
+        return element;
+      } else if (element.childrens) {
+        return getTileElement(element.childrens, parentId);
+      }
+    }
   }
 
   function onDirectoryTextboxKeyUp(event) {
@@ -98,6 +130,8 @@ const Tile = ({ id, metadata }) => {
     }
     const directoryName = event.target.value;
     const parentId = event.target.dataset.parent;
+
+    addTileElement(directoryName, "directory", parentId);
   }
 
   return (

@@ -27389,7 +27389,9 @@ const Explorer = ({ data, updateData, parent = null })=>{
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tileDefault.default), {
                         metadata: d.metadata,
-                        id: d.id
+                        id: d.id,
+                        data: data,
+                        updateData: updateData
                     }, void 0, false, {
                         fileName: "src/components/Explorer.js",
                         lineNumber: 17,
@@ -27401,7 +27403,7 @@ const Explorer = ({ data, updateData, parent = null })=>{
                         parent: d.id
                     }, void 0, false, {
                         fileName: "src/components/Explorer.js",
-                        lineNumber: 18,
+                        lineNumber: 23,
                         columnNumber: 13
                     }, undefined)
                 ]
@@ -27442,8 +27444,10 @@ var _filePng = require("../icons/file.png");
 var _filePngDefault = parcelHelpers.interopDefault(_filePng);
 var _directoryPng = require("../icons/directory.png");
 var _directoryPngDefault = parcelHelpers.interopDefault(_directoryPng);
+var _utility = require("../../common/Utility");
+var _utilityDefault = parcelHelpers.interopDefault(_utility);
 var _s = $RefreshSig$();
-const Tile = ({ id, metadata })=>{
+const Tile = ({ id, metadata, updateData })=>{
     _s();
     (0, _react.useEffect)(()=>{
         document.addEventListener("click", onDocumentClick);
@@ -27478,7 +27482,7 @@ const Tile = ({ id, metadata })=>{
                     children: "add file"
                 }, void 0, false, {
                     fileName: "src/components/Tile.js",
-                    lineNumber: 44,
+                    lineNumber: 45,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27487,7 +27491,7 @@ const Tile = ({ id, metadata })=>{
                     children: "add directory"
                 }, void 0, false, {
                     fileName: "src/components/Tile.js",
-                    lineNumber: 47,
+                    lineNumber: 48,
                     columnNumber: 11
                 }, this)
             ]
@@ -27504,7 +27508,7 @@ const Tile = ({ id, metadata })=>{
             onKeyUp: onFileTextboxKeyUp
         }, void 0, false, {
             fileName: "src/components/Tile.js",
-            lineNumber: 61,
+            lineNumber: 62,
             columnNumber: 7
         }, this);
     }
@@ -27518,7 +27522,7 @@ const Tile = ({ id, metadata })=>{
             onKeyUp: onDirectoryTextboxKeyUp
         }, void 0, false, {
             fileName: "src/components/Tile.js",
-            lineNumber: 76,
+            lineNumber: 77,
             columnNumber: 7
         }, this);
     }
@@ -27526,11 +27530,43 @@ const Tile = ({ id, metadata })=>{
         if (event.which != 13 || !event.target.value) return;
         const fileName = event.target.value;
         const parentId = event.target.dataset.parent;
+        addTileElement(fileName, "file", parentId);
+    }
+    function addTileElement(name, type, parentId) {
+        updateData((prevData)=>{
+            const newFile = {
+                id: (0, _utilityDefault.default).Guid(),
+                metadata: {
+                    name: name,
+                    type: type
+                },
+                childrens: []
+            };
+            const tileElement = getTileElement(prevData, parentId);
+            tileElement.childrens = tileElement.childrens ? [
+                ...tileElement.childrens,
+                newFile
+            ] : [
+                newFile
+            ];
+            setShowAddFileTextBox(false);
+            setShowAddDirectoryTextBox(false);
+            return JSON.parse(JSON.stringify(prevData));
+        });
+    }
+    function getTileElement(data, parentId) {
+        for(let i = 0; i < data.length; i++){
+            const element = data[i];
+            console.log(data, element.id, parentId);
+            if (element.id === parentId) return element;
+            else if (element.childrens) return getTileElement(element.childrens, parentId);
+        }
     }
     function onDirectoryTextboxKeyUp(event) {
         if (event.which != 13 || !event.target.value) return;
         const directoryName = event.target.value;
         const parentId = event.target.dataset.parent;
+        addTileElement(directoryName, "directory", parentId);
     }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
@@ -27544,26 +27580,26 @@ const Tile = ({ id, metadata })=>{
                             src: getIcon(metadata.type)
                         }, void 0, false, {
                             fileName: "src/components/Tile.js",
-                            lineNumber: 112,
+                            lineNumber: 146,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/Tile.js",
-                        lineNumber: 111,
+                        lineNumber: 145,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: metadata.name
                     }, void 0, false, {
                         fileName: "src/components/Tile.js",
-                        lineNumber: 114,
+                        lineNumber: 148,
                         columnNumber: 9
                     }, undefined),
                     getButtons(metadata.type)
                 ]
             }, id, true, {
                 fileName: "src/components/Tile.js",
-                lineNumber: 105,
+                lineNumber: 139,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27578,7 +27614,7 @@ const Tile = ({ id, metadata })=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/Tile.js",
-                lineNumber: 118,
+                lineNumber: 152,
                 columnNumber: 7
             }, undefined)
         ]
@@ -27595,7 +27631,7 @@ $RefreshReg$(_c, "Tile");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../icons/file.png":"dIFqu","../icons/directory.png":"3BW8O"}],"dIFqu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../icons/file.png":"dIFqu","../icons/directory.png":"3BW8O","../../common/Utility":"4MwBp"}],"dIFqu":[function(require,module,exports) {
 module.exports = require("b7b32ee4cbae6a7").getBundleURL("UckoE") + "file.19fd956e.png" + "?" + Date.now();
 
 },{"b7b32ee4cbae6a7":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -27636,6 +27672,16 @@ exports.getOrigin = getOrigin;
 },{}],"3BW8O":[function(require,module,exports) {
 module.exports = require("84f668a8b26d9641").getBundleURL("UckoE") + "directory.51dc06a5.png" + "?" + Date.now();
 
-},{"84f668a8b26d9641":"lgJ39"}]},["3smKr","1xC6H","bB7Pu"], "bB7Pu", "parcelRequirea010")
+},{"84f668a8b26d9641":"lgJ39"}],"4MwBp":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class Utility {
+    static Guid() {
+        return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c)=>(c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+    }
+}
+exports.default = Utility;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["3smKr","1xC6H","bB7Pu"], "bB7Pu", "parcelRequirea010")
 
 //# sourceMappingURL=index.3d214d75.js.map

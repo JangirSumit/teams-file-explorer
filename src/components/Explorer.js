@@ -14,7 +14,12 @@ const Explorer = ({ data, updateData, parent = null }) => {
       {data.map((d) => {
         return (
           <div key={d.id} className="elements">
-            <Tile metadata={d.metadata} id={d.id} />
+            <Tile
+              metadata={d.metadata}
+              id={d.id}
+              data={data}
+              updateData={updateData}
+            />
             <Explorer
               updateData={updateData}
               data={d.childrens}
