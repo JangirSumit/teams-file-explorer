@@ -1,0 +1,9 @@
+.padding-left-15 {
+  padding-left: 15px;
+}
+
+.tile {
+    display: flex;
+    height: 40px;
+    font-size: 25px;
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "id": "32482d63-0631-471a-8740-5bc13592321e",
+    "metadata": {
+      "type": "directory",
+      "name": "root"
+    },
+    "childrens": [
+      {
+        "id": "9945923e-3cf2-49c8-8a2c-f92b64415595",
+        "metadata": {
+          "type": "directory",
+          "name": "directory-2"
+        },
+        "childrens": [
+          {
+            "id": "95111bb4-7e2a-422f-96c7-5405b0576d36",
+            "metadata": {
+              "name": "file-32",
+              "type": "file"
+            }
+          }
+        ]
+      },
+      {
+        "id": "d1d77659-ec42-4ab6-9b88-cf2c1080c184",
+        "metadata": {
+          "type": "file",
+          "name": "file-3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ee120434-7503-4a72-8739-7f6daabcc55e",
+    "metadata": {
+      "type": "file",
+      "name": "file-at-root"
+    }
+  }
+]
