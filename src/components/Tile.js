@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import fileIcon from "../icons/file.png";
 import directoryIcon from "../icons/directory.png";
 import Utility from "../../common/Utility";
+import DirectoryExpander from "./DirectoryExpander";
 
 const Tile = ({ id, metadata, updateData }) => {
   useEffect(() => {
@@ -64,7 +65,8 @@ const Tile = ({ id, metadata, updateData }) => {
         className="input-add"
         placeholder="Press Enter to create File"
         data-parent={parent.id}
-        onKeyUp={onFileTextboxKeyUp}
+        data-tile-type="file"
+        onKeyUp={onTextboxKeyUp}
         autoFocus
       />
     );
@@ -80,21 +82,23 @@ const Tile = ({ id, metadata, updateData }) => {
         className="input-add"
         placeholder="Press Enter to create Directory"
         data-parent={parent.id}
-        onKeyUp={onDirectoryTextboxKeyUp}
+        data-tile-type="directory"
+        onKeyUp={onTextboxKeyUp}
         autoFocus
       />
     );
   }
 
-  function onFileTextboxKeyUp(event) {
+  function onTextboxKeyUp(event) {
     if (event.which != 13 || !event.target.value) {
       return;
     }
 
     const fileName = event.target.value;
     const parentId = event.target.dataset.parent;
+    const tileType = event.target.dataset.tileType;
 
-    addTileElement(fileName, "file", parentId);
+    addTileElement(fileName, tileType, parentId);
   }
 
   function addTileElement(name, type, parentId) {
@@ -108,6 +112,8 @@ const Tile = ({ id, metadata, updateData }) => {
       tileElement.childrens = tileElement.childrens
         ? [...tileElement.childrens, newFile]
         : [newFile];
+
+      //tileElement.childrens.sort((a, b) => b.metadata.name - a.metadata.name);
       setShowAddFileTextBox(false);
       setShowAddDirectoryTextBox(false);
       return JSON.parse(JSON.stringify(prevData));
@@ -125,16 +131,6 @@ const Tile = ({ id, metadata, updateData }) => {
     }
   }
 
-  function onDirectoryTextboxKeyUp(event) {
-    if (event.which != 13 || !event.target.value) {
-      return;
-    }
-    const directoryName = event.target.value;
-    const parentId = event.target.dataset.parent;
-
-    addTileElement(directoryName, "directory", parentId);
-  }
-
   return (
     <>
       <div
@@ -143,6 +139,7 @@ const Tile = ({ id, metadata, updateData }) => {
         key={id}
         className={getTileClassName(metadata.type)}
       >
+        <DirectoryExpander metadata={metadata} />
         <span>
           <img src={getIcon(metadata.type)} />
         </span>

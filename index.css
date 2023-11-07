@@ -23,7 +23,7 @@
 }
 
 .file {
-  width: 200px;
+  min-width: 200px;
 }
 
 .directory {
@@ -38,4 +38,12 @@
   margin-top: 10px;
   margin-left: 30px;
   margin-bottom: 10px;
+}
+
+.rotate--90 {
+  transform: rotate(-90deg);
+}
+
+.rotate-90 {
+  transform: rotate(180deg);
 }

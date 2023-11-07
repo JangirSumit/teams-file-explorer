@@ -11,23 +11,29 @@ const Explorer = ({ data, updateData, parent = null }) => {
       data-parent-id={parent?.id}
       className={parent ? "explorer padding-left-15" : "explorer"}
     >
-      {data.map((d) => {
-        return (
-          <div key={d.id} className="elements">
-            <Tile
-              metadata={d.metadata}
-              id={d.id}
-              data={data}
-              updateData={updateData}
-            />
-            <Explorer
-              updateData={updateData}
-              data={d.childrens}
-              parent={d.id}
-            />
-          </div>
-        );
-      })}
+      {data
+        .sort((a, b) => b.metadata.name - a.metadata.name)
+        .map((d) => {
+          return (
+            <div key={d.id} className="elements">
+              <Tile
+                metadata={d.metadata}
+                id={d.id}
+                data={data}
+                updateData={updateData}
+              />
+              {d.childrens && d.childrens.length ? (
+                <Explorer
+                  updateData={updateData}
+                  data={d.childrens}
+                  parent={d.id}
+                />
+              ) : (
+                ""
+              )}
+            </div>
+          );
+        })}
     </div>
   );
 };

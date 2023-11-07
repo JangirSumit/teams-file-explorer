@@ -27383,7 +27383,7 @@ const Explorer = ({ data, updateData, parent = null })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         "data-parent-id": parent?.id,
         className: parent ? "explorer padding-left-15" : "explorer",
-        children: data.map((d)=>{
+        children: data.sort((a, b)=>b.metadata.name - a.metadata.name).map((d)=>{
             return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "elements",
                 children: [
@@ -27394,23 +27394,23 @@ const Explorer = ({ data, updateData, parent = null })=>{
                         updateData: updateData
                     }, void 0, false, {
                         fileName: "src/components/Explorer.js",
-                        lineNumber: 17,
-                        columnNumber: 13
+                        lineNumber: 19,
+                        columnNumber: 15
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Explorer, {
+                    d.childrens && d.childrens.length ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Explorer, {
                         updateData: updateData,
                         data: d.childrens,
                         parent: d.id
                     }, void 0, false, {
                         fileName: "src/components/Explorer.js",
-                        lineNumber: 23,
-                        columnNumber: 13
-                    }, undefined)
+                        lineNumber: 26,
+                        columnNumber: 17
+                    }, undefined) : ""
                 ]
             }, d.id, true, {
                 fileName: "src/components/Explorer.js",
-                lineNumber: 16,
-                columnNumber: 11
+                lineNumber: 18,
+                columnNumber: 13
             }, undefined);
         })
     }, parent?.id, false, {
@@ -27446,6 +27446,8 @@ var _directoryPng = require("../icons/directory.png");
 var _directoryPngDefault = parcelHelpers.interopDefault(_directoryPng);
 var _utility = require("../../common/Utility");
 var _utilityDefault = parcelHelpers.interopDefault(_utility);
+var _directoryExpander = require("./DirectoryExpander");
+var _directoryExpanderDefault = parcelHelpers.interopDefault(_directoryExpander);
 var _s = $RefreshSig$();
 const Tile = ({ id, metadata, updateData })=>{
     _s();
@@ -27482,7 +27484,7 @@ const Tile = ({ id, metadata, updateData })=>{
                     children: "add file"
                 }, void 0, false, {
                     fileName: "src/components/Tile.js",
-                    lineNumber: 45,
+                    lineNumber: 46,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27491,7 +27493,7 @@ const Tile = ({ id, metadata, updateData })=>{
                     children: "add directory"
                 }, void 0, false, {
                     fileName: "src/components/Tile.js",
-                    lineNumber: 48,
+                    lineNumber: 49,
                     columnNumber: 11
                 }, this)
             ]
@@ -27505,11 +27507,12 @@ const Tile = ({ id, metadata, updateData })=>{
             className: "input-add",
             placeholder: "Press Enter to create File",
             "data-parent": parent.id,
-            onKeyUp: onFileTextboxKeyUp,
+            "data-tile-type": "file",
+            onKeyUp: onTextboxKeyUp,
             autoFocus: true
         }, void 0, false, {
             fileName: "src/components/Tile.js",
-            lineNumber: 62,
+            lineNumber: 63,
             columnNumber: 7
         }, this);
     }
@@ -27520,19 +27523,21 @@ const Tile = ({ id, metadata, updateData })=>{
             className: "input-add",
             placeholder: "Press Enter to create Directory",
             "data-parent": parent.id,
-            onKeyUp: onDirectoryTextboxKeyUp,
+            "data-tile-type": "directory",
+            onKeyUp: onTextboxKeyUp,
             autoFocus: true
         }, void 0, false, {
             fileName: "src/components/Tile.js",
-            lineNumber: 78,
+            lineNumber: 80,
             columnNumber: 7
         }, this);
     }
-    function onFileTextboxKeyUp(event) {
+    function onTextboxKeyUp(event) {
         if (event.which != 13 || !event.target.value) return;
         const fileName = event.target.value;
         const parentId = event.target.dataset.parent;
-        addTileElement(fileName, "file", parentId);
+        const tileType = event.target.dataset.tileType;
+        addTileElement(fileName, tileType, parentId);
     }
     function addTileElement(name, type, parentId) {
         updateData((prevData)=>{
@@ -27551,6 +27556,7 @@ const Tile = ({ id, metadata, updateData })=>{
             ] : [
                 newFile
             ];
+            //tileElement.childrens.sort((a, b) => b.metadata.name - a.metadata.name);
             setShowAddFileTextBox(false);
             setShowAddDirectoryTextBox(false);
             return JSON.parse(JSON.stringify(prevData));
@@ -27563,12 +27569,6 @@ const Tile = ({ id, metadata, updateData })=>{
             else if (element.childrens) return getTileElement(element.childrens, parentId);
         }
     }
-    function onDirectoryTextboxKeyUp(event) {
-        if (event.which != 13 || !event.target.value) return;
-        const directoryName = event.target.value;
-        const parentId = event.target.dataset.parent;
-        addTileElement(directoryName, "directory", parentId);
-    }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27576,31 +27576,38 @@ const Tile = ({ id, metadata, updateData })=>{
                 "data-type": metadata.type,
                 className: getTileClassName(metadata.type),
                 children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _directoryExpanderDefault.default), {
+                        metadata: metadata
+                    }, void 0, false, {
+                        fileName: "src/components/Tile.js",
+                        lineNumber: 142,
+                        columnNumber: 9
+                    }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                             src: getIcon(metadata.type)
                         }, void 0, false, {
                             fileName: "src/components/Tile.js",
-                            lineNumber: 147,
+                            lineNumber: 144,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/Tile.js",
-                        lineNumber: 146,
+                        lineNumber: 143,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: metadata.name
                     }, void 0, false, {
                         fileName: "src/components/Tile.js",
-                        lineNumber: 149,
+                        lineNumber: 146,
                         columnNumber: 9
                     }, undefined),
                     getButtons(metadata.type)
                 ]
             }, id, true, {
                 fileName: "src/components/Tile.js",
-                lineNumber: 140,
+                lineNumber: 136,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27615,7 +27622,7 @@ const Tile = ({ id, metadata, updateData })=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/Tile.js",
-                lineNumber: 153,
+                lineNumber: 150,
                 columnNumber: 7
             }, undefined)
         ]
@@ -27632,7 +27639,7 @@ $RefreshReg$(_c, "Tile");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../icons/file.png":"dIFqu","../icons/directory.png":"3BW8O","../../common/Utility":"4MwBp"}],"dIFqu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../icons/file.png":"dIFqu","../icons/directory.png":"3BW8O","../../common/Utility":"4MwBp","./DirectoryExpander":"eOea8"}],"dIFqu":[function(require,module,exports) {
 module.exports = require("b7b32ee4cbae6a7").getBundleURL("UckoE") + "file.19fd956e.png" + "?" + Date.now();
 
 },{"b7b32ee4cbae6a7":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -27683,6 +27690,53 @@ class Utility {
 }
 exports.default = Utility;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["3smKr","1xC6H","bB7Pu"], "bB7Pu", "parcelRequirea010")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eOea8":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$1d1c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$1d1c.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _collapseExpandPng = require("../icons/collapse-expand.png");
+var _collapseExpandPngDefault = parcelHelpers.interopDefault(_collapseExpandPng);
+var _s = $RefreshSig$();
+const DirectoryExpander = ({ metadata })=>{
+    _s();
+    const [isExpanded, setIsExpanded] = (0, _react.useState)(false);
+    if (metadata.type !== "directory") return "";
+    function onDirectoryExpanderClick(event) {
+        event.target.dataset.isExpanded = !isExpanded;
+        setIsExpanded((prevValue)=>!prevValue);
+    }
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+        src: (0, _collapseExpandPngDefault.default),
+        className: !isExpanded ? "rotate--90" : "",
+        "data-isExpanded": isExpanded,
+        onClick: onDirectoryExpanderClick
+    }, void 0, false, {
+        fileName: "src/components/DirectoryExpander.js",
+        lineNumber: 17,
+        columnNumber: 5
+    }, undefined);
+};
+_s(DirectoryExpander, "FPNvbbHVlWWR4LKxxNntSxiIS38=");
+_c = DirectoryExpander;
+exports.default = DirectoryExpander;
+var _c;
+$RefreshReg$(_c, "DirectoryExpander");
+
+  $parcel$ReactRefreshHelpers$1d1c.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../icons/collapse-expand.png":"cZlGK","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"cZlGK":[function(require,module,exports) {
+module.exports = require("e0e561db5306e89c").getBundleURL("UckoE") + "collapse-expand.7da4434a.png" + "?" + Date.now();
+
+},{"e0e561db5306e89c":"lgJ39"}]},["3smKr","1xC6H","bB7Pu"], "bB7Pu", "parcelRequirea010")
 
 //# sourceMappingURL=index.3d214d75.js.map
