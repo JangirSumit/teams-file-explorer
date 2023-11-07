@@ -27505,7 +27505,8 @@ const Tile = ({ id, metadata, updateData })=>{
             className: "input-add",
             placeholder: "Press Enter to create File",
             "data-parent": parent.id,
-            onKeyUp: onFileTextboxKeyUp
+            onKeyUp: onFileTextboxKeyUp,
+            autoFocus: true
         }, void 0, false, {
             fileName: "src/components/Tile.js",
             lineNumber: 62,
@@ -27519,10 +27520,11 @@ const Tile = ({ id, metadata, updateData })=>{
             className: "input-add",
             placeholder: "Press Enter to create Directory",
             "data-parent": parent.id,
-            onKeyUp: onDirectoryTextboxKeyUp
+            onKeyUp: onDirectoryTextboxKeyUp,
+            autoFocus: true
         }, void 0, false, {
             fileName: "src/components/Tile.js",
-            lineNumber: 77,
+            lineNumber: 78,
             columnNumber: 7
         }, this);
     }
@@ -27557,7 +27559,6 @@ const Tile = ({ id, metadata, updateData })=>{
     function getTileElement(data, parentId) {
         for(let i = 0; i < data.length; i++){
             const element = data[i];
-            console.log(data, element.id, parentId);
             if (element.id === parentId) return element;
             else if (element.childrens) return getTileElement(element.childrens, parentId);
         }
@@ -27580,26 +27581,26 @@ const Tile = ({ id, metadata, updateData })=>{
                             src: getIcon(metadata.type)
                         }, void 0, false, {
                             fileName: "src/components/Tile.js",
-                            lineNumber: 146,
+                            lineNumber: 147,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/Tile.js",
-                        lineNumber: 145,
+                        lineNumber: 146,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: metadata.name
                     }, void 0, false, {
                         fileName: "src/components/Tile.js",
-                        lineNumber: 148,
+                        lineNumber: 149,
                         columnNumber: 9
                     }, undefined),
                     getButtons(metadata.type)
                 ]
             }, id, true, {
                 fileName: "src/components/Tile.js",
-                lineNumber: 139,
+                lineNumber: 140,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27614,7 +27615,7 @@ const Tile = ({ id, metadata, updateData })=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/Tile.js",
-                lineNumber: 152,
+                lineNumber: 153,
                 columnNumber: 7
             }, undefined)
         ]

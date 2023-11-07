@@ -65,6 +65,7 @@ const Tile = ({ id, metadata, updateData }) => {
         placeholder="Press Enter to create File"
         data-parent={parent.id}
         onKeyUp={onFileTextboxKeyUp}
+        autoFocus
       />
     );
   }
@@ -80,6 +81,7 @@ const Tile = ({ id, metadata, updateData }) => {
         placeholder="Press Enter to create Directory"
         data-parent={parent.id}
         onKeyUp={onDirectoryTextboxKeyUp}
+        autoFocus
       />
     );
   }
@@ -115,7 +117,6 @@ const Tile = ({ id, metadata, updateData }) => {
   function getTileElement(data, parentId) {
     for (let i = 0; i < data.length; i++) {
       const element = data[i];
-      console.log(data, element.id, parentId);
       if (element.id === parentId) {
         return element;
       } else if (element.childrens) {
